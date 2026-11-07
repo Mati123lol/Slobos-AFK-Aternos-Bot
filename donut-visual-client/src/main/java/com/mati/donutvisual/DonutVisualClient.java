@@ -64,7 +64,7 @@ public final class DonutVisualClient implements ClientModInitializer {
                 toggleFreecam(client);
             }
 
-            if (freeCamera != null && !client.hasSingleplayerServer()) {
+            if (freeCamera != null && (client.player == null || client.level == null)) {
                 disableFreecam(client);
             }
 
@@ -97,7 +97,7 @@ public final class DonutVisualClient implements ClientModInitializer {
     }
 
     public static void toggleStorageEsp(Minecraft client) {
-        if (!client.hasSingleplayerServer() || client.player == null || client.level == null) {
+        if (client.player == null || client.level == null) {
             return;
         }
         storageEspEnabled = !storageEspEnabled;
@@ -109,7 +109,7 @@ public final class DonutVisualClient implements ClientModInitializer {
     }
 
     public static void toggleFreecam(Minecraft client) {
-        if (!client.hasSingleplayerServer() || client.player == null || client.level == null) {
+        if (client.player == null || client.level == null) {
             return;
         }
 
@@ -161,6 +161,6 @@ public final class DonutVisualClient implements ClientModInitializer {
     }
 
     public static boolean privateToolsAvailable(Minecraft client) {
-        return client.hasSingleplayerServer() && client.player != null && client.level != null;
+        return client.player != null && client.level != null;
     }
 }
