@@ -43,7 +43,6 @@ public final class StorageLocator {
 
     public static void tick(Minecraft client) {
         if (!DonutVisualClient.storageEspEnabled
-                || !client.hasSingleplayerServer()
                 || client.player == null
                 || client.level == null) {
             clear();
@@ -71,7 +70,7 @@ public final class StorageLocator {
     }
 
     public static void scan(Minecraft client) {
-        if (!client.hasSingleplayerServer() || client.player == null || client.level == null) {
+        if (client.player == null || client.level == null) {
             clear();
             return;
         }
