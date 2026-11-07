@@ -2,6 +2,8 @@ package com.mati.donutvisual;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.gizmos.GizmoStyle;
+import net.minecraft.gizmos.Gizmos;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,6 +14,9 @@ import java.util.List;
 
 public final class StorageLocator {
     public record Marker(BlockPos position, String label, double distanceSquared) {}
+
+    private static final GizmoStyle HIGHLIGHT_STYLE =
+            GizmoStyle.strokeAndFill(0xFFFF66FF, 2.0F, 0x443F11A5);
 
     private static List<Marker> markers = List.of();
     private static int ticksUntilScan = 0;
@@ -30,6 +35,12 @@ public final class StorageLocator {
         if (--ticksUntilScan <= 0) {
             ticksUntilScan = 10;
             scan(client);
+        }
+
+        // Gizmos are frame-limited, so submit each marker on every client tick.
+        // Always-on-top makes the purple box visible through blocks in local worlds.
+        for (Marker marker : markers) {
+            Gizmos.cuboid(marker.position(), 0.025F, HIGHLIGHT_STYLE).setAlwaysOnTop();
         }
     }
 
