@@ -1,4 +1,4 @@
-# Donut Visual Client 1.5.0
+# Donut Visual Client 1.6.0
 
 A client-side Fabric mod for Minecraft Java 26.2.
 
@@ -7,14 +7,15 @@ A client-side Fabric mod for Minecraft Java 26.2.
 - Right Shift opens the purple Click GUI.
 - Brightness Boost sets the vanilla gamma option to its supported maximum.
 - No Entity Shadows toggles Minecraft's entity-shadow option.
-- Storage ESP shows nearby chest, trapped chest, barrel, ender chest, and shulker-box coordinates in a HUD panel and draws purple highlighted boxes around them.
-- Freecam detaches the camera and supports smooth WASD flight, Space to rise, Shift to descend, and Sprint to move faster.
+- Storage ESP highlights nearby chest, trapped chest, barrel, ender chest, and shulker-box blocks with purple boxes and lists the nearest coordinates in the HUD.
+- Storage ESP scans up to a 200-block horizontal radius and 32 blocks vertically above/below the player. It scans only already-loaded chunks and spreads the work over multiple ticks.
+- Freecam has independent mouse-look and WASD flight. Space rises, Shift descends, and Sprint increases speed.
 
 ## Private-world restriction
 
-Storage ESP and Freecam are enabled only when an integrated single-player server is active. The storage scan checks already-loaded blocks only and does not request or generate chunks. Both tools are automatically disabled outside a local single-player world.
+Storage ESP and Freecam are enabled only when an integrated single-player server is active. The storage scan never requests or generates chunks. Both tools are automatically disabled outside a local single-player world.
 
-These two scouting modules are intentionally unavailable on Donut SMP or other multiplayer servers.
+These scouting modules are intentionally unavailable on Donut SMP or other multiplayer servers.
 
 ## Controls
 
@@ -22,6 +23,7 @@ These two scouting modules are intentionally unavailable on Donut SMP or other m
 - F6: toggle Freecam (single-player only)
 - F7: toggle Storage ESP (single-player only)
 - WASD: move the freecam
+- Mouse: look around
 - Space / Shift: move up / down
 - Sprint: move faster
 
