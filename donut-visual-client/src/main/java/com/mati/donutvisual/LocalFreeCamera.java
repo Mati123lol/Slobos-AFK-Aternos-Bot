@@ -13,7 +13,8 @@ import net.minecraft.world.phys.Vec3;
 import java.util.UUID;
 
 /**
- * Detached, client-only camera for integrated single-player worlds.
+ * Detached, client-only camera. In multiplayer it can only view chunks
+ * already sent to and retained by the client; it does not move the server player.
  */
 public final class LocalFreeCamera extends AbstractClientPlayer {
     private final KeyboardInput cameraInput;
