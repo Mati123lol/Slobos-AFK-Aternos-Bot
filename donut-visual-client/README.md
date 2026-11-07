@@ -1,19 +1,30 @@
-# Donut Visual Client 1.3.0
+# Donut Visual Client 1.4.0
 
-A small client-only Fabric mod for Minecraft Java 26.2.
+A client-side Fabric mod for Minecraft Java 26.2.
 
-## Included
+## Features
 
-- Right Shift opens a purple Click GUI.
-- Brightness Boost sets the vanilla gamma option to its supported maximum (1.0).
+- Right Shift opens the purple Click GUI.
+- Brightness Boost sets the vanilla gamma option to its supported maximum.
 - No Entity Shadows toggles Minecraft's entity-shadow option.
-- Both visual options are local client settings; these toggles do not alter server state.
+- Storage ESP shows nearby chest, trapped chest, barrel, ender chest, and shulker-box coordinates in a HUD panel.
+- Freecam detaches the camera and provides local flight controls.
 
-## Not included
+## Private-world restriction
 
-This build does not include storage ESP, x-ray, anti-cheat bypasses, or detached multiplayer freecam.
+Storage ESP and Freecam are enabled only when an integrated single-player server is active. They automatically clear/disable when the game is not in a local single-player world. The storage scan checks already-loaded blocks only and does not request or generate chunks.
 
-## Build environment
+These two scouting modules are intentionally unavailable on Donut SMP or other multiplayer servers.
+
+## Controls
+
+- Right Shift: open GUI
+- F6: toggle Freecam (single-player only)
+- F7: toggle Storage ESP (single-player only)
+
+The Click GUI also contains buttons for all modules.
+
+## Build
 
 - Minecraft 26.2
 - Java 25
@@ -22,4 +33,6 @@ This build does not include storage ESP, x-ray, anti-cheat bypasses, or detached
 - Fabric Loom 1.17.21
 - Gradle 9.5.1
 
-The GitHub Actions workflow compiles the project and uploads the built mod JAR as an artifact. A successful compile does not replace in-game testing on the target launcher/profile.
+Run gradle clean build. The JAR appears in build/libs.
+
+A successful CI build checks compilation and packaging. Test the mod in a separate Minecraft profile before using it in a saved world.
