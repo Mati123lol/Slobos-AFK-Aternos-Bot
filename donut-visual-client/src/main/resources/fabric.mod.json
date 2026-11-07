@@ -3,12 +3,18 @@
   "id": "donutvisual",
   "version": "${version}",
   "name": "Donut Visual Client",
-  "description": "Client-side visual settings with storage locator and freecam restricted to integrated single-player worlds.",
+  "description": "Client-side visual settings with a 200-block local storage locator and single-player freecam.",
   "authors": ["Mati123lol"],
   "environment": "client",
   "entrypoints": {
     "client": ["com.mati.donutvisual.DonutVisualClient"]
   },
+  "mixins": [
+    {
+      "config": "donutvisual.client.mixins.json",
+      "environment": "client"
+    }
+  ],
   "depends": {
     "fabricloader": ">=0.19.3",
     "minecraft": "26.2",
