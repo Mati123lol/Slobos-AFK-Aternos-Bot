@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "donutvisual",
+  "version": "${version}",
+  "name": "Donut Visual Client",
+  "description": "A lightweight client-side visual settings menu for Minecraft 26.2.",
+  "authors": ["Mati123lol"],
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.mati.donutvisual.DonutVisualClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
