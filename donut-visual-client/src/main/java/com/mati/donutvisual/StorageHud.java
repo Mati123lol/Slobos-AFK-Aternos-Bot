@@ -35,7 +35,7 @@ public final class StorageHud {
         graphics.fill(8, 8, 218, 30 + visible * 13, 0xC9100D20);
         graphics.fill(8, 8, 218, 10, 0xFFB65CFF);
         graphics.outline(8, 8, 210, panelHeight, 0xFF6D3C91);
-        graphics.text(client.font, "STORAGE ESP  |  LOCAL WORLD", 16, 15, 0xFFE8CFFF, true);
+        graphics.text(client.font, "STORAGE ESP  |  200 BLOCKS", 16, 15, 0xFFE8CFFF, true);
 
         int y = 34;
         for (int i = 0; i < visible; i++) {
@@ -47,8 +47,10 @@ public final class StorageHud {
             y += 13;
         }
 
-        if (markers.isEmpty()) {
-            graphics.text(client.font, "No storage blocks found within 12 blocks.", 16, 35, 0xFFB9AFCB, true);
+        if (StorageLocator.isScanning()) {
+            graphics.text(client.font, "Scanning loaded chunks...", 16, 35, 0xFFB9AFCB, true);
+        } else if (markers.isEmpty()) {
+            graphics.text(client.font, "No storage blocks found in loaded area.", 16, 35, 0xFFB9AFCB, true);
         } else if (markers.size() > visible) {
             graphics.text(client.font, "+" + (markers.size() - visible) + " more nearby", 16, y, 0xFFB9AFCB, true);
         }
