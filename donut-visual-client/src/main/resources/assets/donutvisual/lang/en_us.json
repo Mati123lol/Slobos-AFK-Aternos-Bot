@@ -1,4 +1,6 @@
 {
   "key.category.donutvisual.main": "Donut Visual Client",
-  "key.donutvisual.open_gui": "Open Click GUI"
+  "key.donutvisual.open_gui": "Open Click GUI",
+  "key.donutvisual.toggle_storage": "Toggle Storage Locator (Single-player)",
+  "key.donutvisual.toggle_freecam": "Toggle Freecam (Single-player)"
 }
