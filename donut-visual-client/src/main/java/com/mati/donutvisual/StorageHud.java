@@ -23,8 +23,8 @@ public final class StorageHud {
     private static void render(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker) {
         Minecraft client = Minecraft.getInstance();
         if (!DonutVisualClient.storageEspEnabled
-                || !client.hasSingleplayerServer()
-                || client.player == null) {
+                || client.player == null
+                || client.level == null) {
             return;
         }
 
