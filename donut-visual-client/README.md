@@ -1,4 +1,4 @@
-# Donut Visual Client 1.4.0
+# Donut Visual Client 1.5.0
 
 A client-side Fabric mod for Minecraft Java 26.2.
 
@@ -7,12 +7,12 @@ A client-side Fabric mod for Minecraft Java 26.2.
 - Right Shift opens the purple Click GUI.
 - Brightness Boost sets the vanilla gamma option to its supported maximum.
 - No Entity Shadows toggles Minecraft's entity-shadow option.
-- Storage ESP shows nearby chest, trapped chest, barrel, ender chest, and shulker-box coordinates in a HUD panel.
-- Freecam detaches the camera and provides local flight controls.
+- Storage ESP shows nearby chest, trapped chest, barrel, ender chest, and shulker-box coordinates in a HUD panel and draws purple highlighted boxes around them.
+- Freecam detaches the camera and supports smooth WASD flight, Space to rise, Shift to descend, and Sprint to move faster.
 
 ## Private-world restriction
 
-Storage ESP and Freecam are enabled only when an integrated single-player server is active. They automatically clear/disable when the game is not in a local single-player world. The storage scan checks already-loaded blocks only and does not request or generate chunks.
+Storage ESP and Freecam are enabled only when an integrated single-player server is active. The storage scan checks already-loaded blocks only and does not request or generate chunks. Both tools are automatically disabled outside a local single-player world.
 
 These two scouting modules are intentionally unavailable on Donut SMP or other multiplayer servers.
 
@@ -21,6 +21,9 @@ These two scouting modules are intentionally unavailable on Donut SMP or other m
 - Right Shift: open GUI
 - F6: toggle Freecam (single-player only)
 - F7: toggle Storage ESP (single-player only)
+- WASD: move the freecam
+- Space / Shift: move up / down
+- Sprint: move faster
 
 The Click GUI also contains buttons for all modules.
 
