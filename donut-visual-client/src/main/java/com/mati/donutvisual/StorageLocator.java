@@ -13,14 +13,14 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Searches an approximately 200-block horizontal radius, with a 32-block
+ * Searches an approximately 200-block horizontal radius, with a 128-block
  * vertical band, but only within chunks already loaded by the client.
  * The scan is spread over multiple ticks to avoid a large frame hitch.
  */
 public final class StorageLocator {
     public static final int RANGE = 200;
-    private static final int VERTICAL_RANGE = 32;
-    private static final int SCAN_COLUMNS_PER_TICK = 5;
+    private static final int VERTICAL_RANGE = 128;
+    private static final int SCAN_COLUMNS_PER_TICK = 1;
     private static final int RESCAN_DELAY_TICKS = 40;
 
     public record Marker(BlockPos position, String label, double distanceSquared) {}
