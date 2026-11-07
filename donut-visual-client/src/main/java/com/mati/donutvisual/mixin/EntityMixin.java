@@ -15,8 +15,7 @@ public abstract class EntityMixin {
     @Inject(method = "turn", at = @At("HEAD"), cancellable = true)
     private void donutvisual$turnFreeCamera(double yaw, double pitch, CallbackInfo ci) {
         Minecraft client = Minecraft.getInstance();
-        if (client.hasSingleplayerServer()
-                && client.player == (Object) this
+        if (client.player == (Object) this
                 && DonutVisualClient.isFreecamEnabled()) {
             LocalFreeCamera camera = DonutVisualClient.getFreeCamera();
             if (camera != null) {
