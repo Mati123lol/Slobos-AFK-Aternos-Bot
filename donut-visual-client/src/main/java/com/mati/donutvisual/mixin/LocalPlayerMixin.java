@@ -14,7 +14,7 @@ public abstract class LocalPlayerMixin extends EntityMixin {
     @Override
     protected void donutvisual$getViewXRot(float partialTick, CallbackInfoReturnable<Float> cir) {
         Minecraft client = Minecraft.getInstance();
-        if (client.hasSingleplayerServer() && DonutVisualClient.isFreecamEnabled()) {
+        if (client.player != null && DonutVisualClient.isFreecamEnabled()) {
             LocalFreeCamera camera = DonutVisualClient.getFreeCamera();
             if (camera != null) {
                 cir.setReturnValue(camera.getViewXRot(partialTick));
