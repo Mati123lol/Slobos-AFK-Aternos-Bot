@@ -194,6 +194,10 @@ public final class StorageLocator {
         return markers;
     }
 
+    public static boolean isScanning() {
+        return workingMarkers != null;
+    }
+
     public static void clear() {
         markers = List.of();
         workingMarkers = null;
