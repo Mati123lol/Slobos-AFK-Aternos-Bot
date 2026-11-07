@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.mati.donutvisual.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "EntityMixin",
+    "LocalPlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
