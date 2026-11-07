@@ -18,24 +18,32 @@ public final class DonutVisualScreen extends Screen {
     @Override
     protected void init() {
         int centerX = this.width / 2;
-        int top = this.height / 2 - 32;
+        int top = this.height / 2 - 66;
+        Minecraft client = Minecraft.getInstance();
 
-        Button brightnessButton = Button.builder(brightnessLabel(), button -> {
+        this.addRenderableWidget(Button.builder(brightnessLabel(), button -> {
             DonutVisualClient.toggleBrightnessBoost();
             button.setMessage(brightnessLabel());
-        }).bounds(centerX - 112, top, 224, 20).build();
-        this.addRenderableWidget(brightnessButton);
+        }).bounds(centerX - 112, top, 224, 20).build());
 
-        Button shadowsButton = Button.builder(shadowsLabel(), button -> {
+        this.addRenderableWidget(Button.builder(shadowsLabel(), button -> {
             DonutVisualClient.toggleNoEntityShadows();
             button.setMessage(shadowsLabel());
-        }).bounds(centerX - 112, top + 29, 224, 20).build();
-        this.addRenderableWidget(shadowsButton);
+        }).bounds(centerX - 112, top + 25, 224, 20).build());
 
-        Button closeButton = Button.builder(Component.literal("Close"), button -> this.onClose())
-                .bounds(centerX - 60, top + 67, 120, 20)
-                .build();
-        this.addRenderableWidget(closeButton);
+        this.addRenderableWidget(Button.builder(storageLabel(client), button -> {
+            DonutVisualClient.toggleStorageEsp(client);
+            button.setMessage(storageLabel(client));
+        }).bounds(centerX - 112, top + 50, 224, 20).build());
+
+        this.addRenderableWidget(Button.builder(freecamLabel(client), button -> {
+            DonutVisualClient.toggleFreecam(client);
+            button.setMessage(freecamLabel(client));
+        }).bounds(centerX - 112, top + 75, 224, 20).build());
+
+        this.addRenderableWidget(Button.builder(Component.literal("Close"), button -> this.onClose())
+                .bounds(centerX - 60, top + 108, 120, 20)
+                .build());
     }
 
     private static Component brightnessLabel() {
@@ -46,22 +54,36 @@ public final class DonutVisualScreen extends Screen {
         return Component.literal("No Entity Shadows: " + (DonutVisualClient.noEntityShadows ? "ON" : "OFF"));
     }
 
+    private static Component storageLabel(Minecraft client) {
+        if (!DonutVisualClient.privateToolsAvailable(client)) {
+            return Component.literal("Storage ESP: Singleplayer only");
+        }
+        return Component.literal("Storage ESP: " + (DonutVisualClient.storageEspEnabled ? "ON" : "OFF"));
+    }
+
+    private static Component freecamLabel(Minecraft client) {
+        if (!DonutVisualClient.privateToolsAvailable(client)) {
+            return Component.literal("Freecam: Singleplayer only");
+        }
+        return Component.literal("Freecam: " + (DonutVisualClient.isFreecamEnabled() ? "ON" : "OFF"));
+    }
+
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         super.extractRenderState(graphics, mouseX, mouseY, delta);
 
         int left = this.width / 2 - 140;
-        int top = this.height / 2 - 94;
+        int top = this.height / 2 - 116;
         int right = this.width / 2 + 140;
-        int bottom = this.height / 2 + 112;
+        int bottom = this.height / 2 + 143;
 
         graphics.fill(left, top, right, bottom, PANEL);
         graphics.fill(left, top, right, top + 3, PURPLE);
         graphics.outline(left, top, right - left, bottom - top, 0xFF51306F);
 
-        graphics.text(this.font, "DONUT VISUAL CLIENT", this.width / 2 - 75, top + 14, 0xFFFFFFFF, true);
-        graphics.text(this.font, "26.2  |  FABRIC  |  CLIENT VISUALS", this.width / 2 - 91, top + 32, PURPLE, true);
-        graphics.text(this.font, "Right Shift opens this menu", this.width / 2 - 75, bottom - 24, MUTED, true);
+        graphics.text(this.font, "DONUT VISUAL CLIENT", this.width / 2 - 75, top + 12, 0xFFFFFFFF, true);
+        graphics.text(this.font, "26.2  |  FABRIC  |  PURPLE EDITION", this.width / 2 - 99, top + 29, PURPLE, true);
+        graphics.text(this.font, "Storage ESP and Freecam: private worlds only", this.width / 2 - 119, bottom - 20, MUTED, true);
     }
 
     @Override
