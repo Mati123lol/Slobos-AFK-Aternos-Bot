@@ -24,6 +24,7 @@ public final class DonutVisualClient implements ClientModInitializer {
 
     private static LocalFreeCamera freeCamera;
     private static ClientInput previousPlayerInput;
+    private static boolean previousSmartCull;
 
     @Override
     public void onInitializeClient() {
@@ -114,6 +115,8 @@ public final class DonutVisualClient implements ClientModInitializer {
 
         if (freeCamera == null) {
             previousPlayerInput = client.player.input;
+            previousSmartCull = client.smartCull;
+            client.smartCull = false;
             client.player.input = new ClientInput();
 
             freeCamera = new LocalFreeCamera(client);
@@ -143,6 +146,7 @@ public final class DonutVisualClient implements ClientModInitializer {
             }
         }
 
+        client.smartCull = previousSmartCull;
         freeCamera.despawn();
         freeCamera = null;
         previousPlayerInput = null;
@@ -150,6 +154,10 @@ public final class DonutVisualClient implements ClientModInitializer {
 
     public static boolean isFreecamEnabled() {
         return freeCamera != null;
+    }
+
+    public static LocalFreeCamera getFreeCamera() {
+        return freeCamera;
     }
 
     public static boolean privateToolsAvailable(Minecraft client) {
