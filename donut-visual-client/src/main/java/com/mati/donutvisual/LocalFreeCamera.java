@@ -8,11 +8,12 @@ import net.minecraft.client.player.KeyboardInput;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.phys.Vec2;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.UUID;
 
 /**
- * Detached camera entity for integrated single-player worlds only.
+ * Detached camera entity used only in integrated single-player worlds.
  */
 public final class LocalFreeCamera extends AbstractClientPlayer {
     private final KeyboardInput cameraInput;
@@ -24,6 +25,9 @@ public final class LocalFreeCamera extends AbstractClientPlayer {
         this.cameraInput = new KeyboardInput(client.options);
         this.setId(-420);
         this.setPose(Pose.SWIMMING);
+        this.getAbilities().flying = true;
+        this.getAbilities().setFlyingSpeed(0.0F);
+        this.setNoGravity(true);
     }
 
     public void spawn() {
@@ -37,11 +41,62 @@ public final class LocalFreeCamera extends AbstractClientPlayer {
     @Override
     public void tick() {
         cameraInput.tick();
+        applyFreeFlightVelocity();
+
         this.getAbilities().flying = true;
-        this.getAbilities().setFlyingSpeed(0.05F);
+        this.getAbilities().setFlyingSpeed(0.0F);
         this.setNoGravity(true);
         this.setOnGround(false);
+
         super.tick();
+    }
+
+    /**
+     * Apply velocity directly to the detached camera. The old implementation
+     * only populated movement impulses, which did not reliably move this
+     * client-side player entity on Minecraft 26.2.
+     */
+    private void applyFreeFlightVelocity() {
+        float yaw = this.getYRot();
+        Vec3 forward = Vec3.directionFromRotation(0.0F, yaw);
+        Vec3 right = Vec3.directionFromRotation(0.0F, yaw + 90.0F);
+
+        double x = 0.0;
+        double z = 0.0;
+
+        if (cameraInput.keyPresses.forward()) {
+            x += forward.x;
+            z += forward.z;
+        }
+        if (cameraInput.keyPresses.backward()) {
+            x -= forward.x;
+            z -= forward.z;
+        }
+        if (cameraInput.keyPresses.right()) {
+            x += right.x;
+            z += right.z;
+        }
+        if (cameraInput.keyPresses.left()) {
+            x -= right.x;
+            z -= right.z;
+        }
+
+        double length = Math.sqrt(x * x + z * z);
+        double speed = client.options.keySprint.isDown() ? 0.48 : 0.22;
+        if (length > 0.0) {
+            x = (x / Math.max(1.0, length)) * speed;
+            z = (z / Math.max(1.0, length)) * speed;
+        }
+
+        double y = 0.0;
+        if (cameraInput.keyPresses.jump()) {
+            y += speed;
+        }
+        if (cameraInput.keyPresses.shift()) {
+            y -= speed;
+        }
+
+        this.setDeltaMovement(x, y, z);
     }
 
     @Override
