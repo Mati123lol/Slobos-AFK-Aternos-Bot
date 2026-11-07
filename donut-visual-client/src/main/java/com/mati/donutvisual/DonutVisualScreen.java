@@ -56,14 +56,14 @@ public final class DonutVisualScreen extends Screen {
 
     private static Component storageLabel(Minecraft client) {
         if (!DonutVisualClient.privateToolsAvailable(client)) {
-            return Component.literal("Storage ESP: Singleplayer only");
+            return Component.literal("Storage ESP: Join a world first");
         }
         return Component.literal("Storage ESP: " + (DonutVisualClient.storageEspEnabled ? "ON" : "OFF"));
     }
 
     private static Component freecamLabel(Minecraft client) {
         if (!DonutVisualClient.privateToolsAvailable(client)) {
-            return Component.literal("Freecam: Singleplayer only");
+            return Component.literal("Freecam: Join a world first");
         }
         return Component.literal("Freecam: " + (DonutVisualClient.isFreecamEnabled() ? "ON" : "OFF"));
     }
@@ -83,7 +83,7 @@ public final class DonutVisualScreen extends Screen {
 
         graphics.text(this.font, "DONUT VISUAL CLIENT", this.width / 2 - 75, top + 12, 0xFFFFFFFF, true);
         graphics.text(this.font, "26.2  |  FABRIC  |  PURPLE EDITION", this.width / 2 - 99, top + 29, PURPLE, true);
-        graphics.text(this.font, "Storage ESP and Freecam: private worlds only", this.width / 2 - 119, bottom - 20, MUTED, true);
+        graphics.text(this.font, "Multiplayer supported where permitted | loaded chunks only", this.width / 2 - 128, bottom - 20, MUTED, true);
     }
 
     @Override
