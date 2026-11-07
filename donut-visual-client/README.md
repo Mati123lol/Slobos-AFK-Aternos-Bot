@@ -1,4 +1,4 @@
-# Donut Visual Client 1.6.1
+# Donut Visual Client 1.7.0
 
 A client-side Fabric mod for Minecraft Java 26.2.
 
@@ -7,21 +7,21 @@ A client-side Fabric mod for Minecraft Java 26.2.
 - Right Shift opens the purple Click GUI.
 - Brightness Boost sets the vanilla gamma option to its supported maximum.
 - No Entity Shadows toggles Minecraft's entity-shadow option.
-- Storage ESP highlights nearby chest, trapped chest, barrel, ender chest, and shulker-box blocks with purple boxes and lists the nearest coordinates in the HUD.
-- Storage ESP scans up to a 200-block horizontal radius and 128 blocks above/below the player. It scans only already-loaded chunks and spreads work over multiple ticks to limit lag.
-- Freecam has independent mouse-look and WASD flight. Space rises, Shift descends, and Sprint increases speed.
+- Storage ESP highlights chest, trapped chest, barrel, ender chest, and shulker-box blocks with purple boxes and lists the nearest coordinates in the HUD.
+- Storage ESP scans a 200-block horizontal radius and 128 blocks above/below the player, but only in chunks already loaded and sent to the client. The scan is spread over multiple ticks.
+- Freecam is a detached client-side camera with independent mouse-look and WASD flight. Space rises, Shift descends, and Sprint increases speed.
 
-## Private-world restriction
+## Multiplayer behavior
 
-Storage ESP and Freecam are enabled only when an integrated single-player server is active. The storage scan never requests or generates chunks. Both tools are automatically disabled outside a local single-player world.
+Storage ESP and the detached local camera can be toggled in single-player and multiplayer worlds. Use them only on servers you own or where the server owner has explicitly permitted them.
 
-These scouting modules are intentionally unavailable on Donut SMP or other multiplayer servers.
+The client cannot request or generate chunks, bypass anti-cheat, or reveal blocks in chunks the server has not sent to the client. In multiplayer, the freecam does not move the actual server-side player and is limited to the chunks the client already has loaded around that player. Server view distance and client render distance affect how far the camera can see.
 
 ## Controls
 
 - Right Shift: open GUI
-- F6: toggle Freecam (single-player only)
-- F7: toggle Storage ESP (single-player only)
+- F6: toggle Freecam
+- F7: toggle Storage ESP
 - WASD: move the freecam
 - Mouse: look around
 - Space / Shift: move up / down
