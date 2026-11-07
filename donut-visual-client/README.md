@@ -1,4 +1,4 @@
-# Donut Visual Client 1.6.0
+# Donut Visual Client 1.6.1
 
 A client-side Fabric mod for Minecraft Java 26.2.
 
@@ -8,7 +8,7 @@ A client-side Fabric mod for Minecraft Java 26.2.
 - Brightness Boost sets the vanilla gamma option to its supported maximum.
 - No Entity Shadows toggles Minecraft's entity-shadow option.
 - Storage ESP highlights nearby chest, trapped chest, barrel, ender chest, and shulker-box blocks with purple boxes and lists the nearest coordinates in the HUD.
-- Storage ESP scans up to a 200-block horizontal radius and 32 blocks vertically above/below the player. It scans only already-loaded chunks and spreads the work over multiple ticks.
+- Storage ESP scans up to a 200-block horizontal radius and 128 blocks above/below the player. It scans only already-loaded chunks and spreads work over multiple ticks to limit lag.
 - Freecam has independent mouse-look and WASD flight. Space rises, Shift descends, and Sprint increases speed.
 
 ## Private-world restriction
